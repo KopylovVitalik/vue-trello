@@ -1,17 +1,26 @@
 <template>
-  <div class="task-view">
+  <div class="modal-view">
     <div class="flex flex-col flex-grow mx-4">
       <input
         type="text"
         :value="task.name"
-        class="flex-grow p-4 text-xl bg-green-light font-bold"
+        class="flex-grow p-4 text-xl bg-grey-lighter border-grey border focus:bg-grey-light font-bold"
         @change="updateProp($event, 'name')"
       />
       <textarea
         :value="task.description"
-        class="relative h-64 border-none mt-5 p-4 bg-purple-lighter focus:bg-purple-lightest rounded flex-grow"
+        class="relative h-64 mt-5 p-4 bg-grey-lighter border-grey border focus:bg-grey-light rounded flex-grow"
         @change="updateProp($event, 'description')"
       ></textarea>
+      <!-- <label class="md:w-2/3 block text-grey font-bold mt-5">
+        <input
+          class="mr-2 leading-loose"
+          type="checkbox"
+          :checked="task.highPriority"
+          @change="updateProp($event, 'highPriority')"
+        />
+        <span class="text-lg font-bold text-black">Top priority</span>
+      </label> -->
     </div>
   </div>
 </template>
@@ -32,14 +41,19 @@ export default {
         key,
         value: e.target.value
       });
-      e.target.value = "";
+      e.target.value = '';
+        // e.target.type === "checkbox"
+        //   ? e.target.value === "on"
+        //     ? ""
+        //     : "on"
+        //   : "";
     }
   }
 };
 </script>
 
 <style>
-.task-view {
+.modal-view {
   @apply relative flex flex-col bg-white pin mx-4 m-32 mx-auto py-4 text-left rounded shadow;
   max-width: 700px;
 }
